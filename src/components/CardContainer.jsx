@@ -3,8 +3,12 @@ import Card from "./Card";
 import cardData from "./cardData.json"; // Import the card data from cardData.json
 
 const CardContainer = () => {
-  const initialData = cardData.cardData;
+  const initialData = cardData.cardData.map((card) => ({
+    ...card,
+    isClicked: false,
+  }));
   const [data, setData] = useState(initialData);
+  const [clickedCards, setClickedCards] = useState([]);
 
   const shuffleCards = () => {
     const shuffledData = [...data];
@@ -15,6 +19,25 @@ const CardContainer = () => {
     setData(shuffledData);
   };
 
+  const handleClick = (id) => {
+    if (clickedCards.includes(id)) {
+      // Card is already clicked before, show "You lose" message
+      console.log("You lose");
+    } else {
+      // Card is clicked for the first time, record the click
+      setClickedCards((prevClickedCards) => [...prevClickedCards, id]);
+
+      setData((prevData) =>
+        prevData.map((card) =>
+          card.id === id ? { ...card, isClicked: true } : card
+        )
+      );
+      shuffleCards();
+    }
+  };
+
+  console.log(clickedCards);
+
   return (
     <div className="card-container">
       {data.map((card) => (
@@ -23,7 +46,8 @@ const CardContainer = () => {
           title={card.title}
           imageUrl={card.imageUrl}
           description={card.description}
-          handleClick={shuffleCards} // Pass the shuffle function as a prop to the Card component
+          isClicked={card.isClicked}
+          handleClick={() => handleClick(card.id)}
         />
       ))}
     </div>
