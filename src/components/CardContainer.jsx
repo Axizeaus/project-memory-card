@@ -6,9 +6,9 @@ const CardContainer = () => {
   const data = cardData.cardData;
   return (
     <div className="card-container">
-      {data.map((card, index) => (
+      {data.map((card) => (
         <Card
-          key={index}
+          key={card.id}
           title={card.title}
           imageUrl={card.imageUrl}
           description={card.description}
