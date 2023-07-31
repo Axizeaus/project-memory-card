@@ -1,20 +1,18 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from "react";
+import Header from "./components/Header";
 import CardContainer from "./components/CardContainer";
+import Footer from "./components/Footer";
+import "./App.css";
 
 const App = () => {
+  const [score, setScore] = useState(0);
+
   return (
-    <>
-      <header>
-        <h1>Header</h1>
-      </header>
-      <main>
-        <CardContainer />
-      </main>
-      <footer>
-        <h1>Footer</h1>
-      </footer>
-    </>
+    <div>
+      <Header score={score} />
+      <CardContainer setScore={setScore} />
+      <Footer />
+    </div>
   );
 };
 

@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
-import cardData from "./cardData.json"; // Import the card data from cardData.json
+import cardData from "./cardData.json";
 
-const CardContainer = () => {
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+const CardContainer = ({ setScore }) => {
   const initialData = cardData.cardData.map((card) => ({
     ...card,
     isClicked: false,
@@ -10,21 +18,17 @@ const CardContainer = () => {
   const [data, setData] = useState(initialData);
   const [clickedCards, setClickedCards] = useState([]);
 
-  const shuffleCards = () => {
-    const shuffledData = [...data];
-    for (let i = shuffledData.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledData[i], shuffledData[j]] = [shuffledData[j], shuffledData[i]];
-    }
-    setData(shuffledData);
-  };
+  useEffect(() => {
+    setData((prevData) => shuffleArray([...prevData]));
+  }, [clickedCards]); // Use an empty dependency array to trigger the effect only once when the component mounts
 
-  const handleClick = (id) => {
+  const handleCardClick = (id) => {
     if (clickedCards.includes(id)) {
-      // Card is already clicked before, show "You lose" message
       console.log("You lose");
+      setData(initialData);
+      setClickedCards([]);
+      setScore(0);
     } else {
-      // Card is clicked for the first time, record the click
       setClickedCards((prevClickedCards) => [...prevClickedCards, id]);
 
       setData((prevData) =>
@@ -32,25 +36,26 @@ const CardContainer = () => {
           card.id === id ? { ...card, isClicked: true } : card
         )
       );
-      shuffleCards();
+
+      setScore((prevScore) => prevScore + 1);
     }
   };
 
-  console.log(clickedCards);
-
   return (
-    <div className="card-container">
-      {data.map((card) => (
-        <Card
-          key={card.id}
-          title={card.title}
-          imageUrl={card.imageUrl}
-          description={card.description}
-          isClicked={card.isClicked}
-          handleClick={() => handleClick(card.id)}
-        />
-      ))}
-    </div>
+    <main>
+      <div className="card-container">
+        {data.map((card) => (
+          <Card
+            key={card.id}
+            title={card.title}
+            imageUrl={card.imageUrl}
+            description={card.description}
+            isClicked={card.isClicked}
+            handleClick={() => handleCardClick(card.id)}
+          />
+        ))}
+      </div>
+    </main>
   );
 };
 
