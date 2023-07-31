@@ -5,7 +5,6 @@ const Card = ({ title, imageUrl, description }) => {
     <div className="card">
       <img src={imageUrl} alt={title} />
       <h2>{title}</h2>
-      <p>{description}</p>
     </div>
   );
 };

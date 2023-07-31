@@ -1,0 +1,44 @@
+{
+  "cardData": [
+    {
+      "title": "Sun",
+      "imageUrl": "./images/sun.png"
+    },
+    {
+      "title": "Earth",
+      "imageUrl": "./images/earth.png"
+    },
+    {
+      "title": "Mars",
+      "imageUrl": "./images/mars.png"
+    },
+    {
+      "title": "Jupiter",
+      "imageUrl": "./images/jupiter.jpeg"
+    },
+    {
+      "title": "Mercury",
+      "imageUrl": "./images/mercury.jpeg"
+    },
+    {
+      "title": "Naptune",
+      "imageUrl": "./images/naptune.png"
+    },
+    {
+      "title": "Saturn",
+      "imageUrl": "./images/saturn.jpeg"
+    },
+    {
+      "title": "Venus",
+      "imageUrl": "./images/venus.jpeg"
+    },
+    {
+      "title": "Uranus",
+      "imageUrl": "./images/uranus.jpeg"
+    },
+    {
+      "title": "Moon",
+      "imageUrl": "./images/moon.jpeg"
+    }
+  ]
+}
