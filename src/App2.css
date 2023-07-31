@@ -1,0 +1,186 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    overflow: hidden;
+    /* Prevent scrollbars from appearing */
+}
+
+header {
+    background-color: #101010;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #f2f2f2;
+    padding: 0 20px;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+main {
+    background-color: #202020;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10vh 20px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    /* Automatically adjust the number of columns */
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    /* Take full width */
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+    /* Hide any potential horizontal overflow */
+    overflow-y: auto;
+    /* Add vertical scroll when needed */
+    max-height: calc(100vh - 20vh);
+    /* Adjust the max height to fit the remaining available height */
+    perspective: 1000px;
+    /* Add 3D perspective for the tilt effect */
+    transform-style: preserve-3d;
+    /* Preserve 3D transformations for child elements */
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10%;
+    padding: 12px;
+    box-shadow: 0 4px 8px rgb(0, 13, 255);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    background-color: #ffffff;
+    position: relative;
+    /* Add position relative for the hover effect */
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1));
+    opacity: 0;
+    transform: scaleX(0) rotateX(30deg);
+    /* Initial 3D transform */
+    transform-origin: left bottom;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.card:hover::before {
+    opacity: 1;
+    transform: scaleX(1) rotateX(10deg);
+    /* Final 3D transform on hover */
+}
+
+.card:hover {
+    transform: translateY(-10px) rotateX(-5deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-top: 12px;
+    color: #333333;
+}
+
+footer {
+    background-color: #101010;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f2f2f2;
+    font-size: 16px;
+    position: fixed;
+    /* Position the footer at the bottom and fix it */
+    width: 100%;
+    /* Make the footer full-width */
+    bottom: 0;
+    /* Stick the footer to the bottom */
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.github-logo {
+    width: 24px;
+    margin-right: 8px;
+    transition: transform 0.5s;
+}
+
+.github-logo:hover {
+    transform: scale(2) rotate(360deg);
+}
+
+/* Media Queries */
+
+/* For screens smaller than 768px (e.g., mobile phones) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 18px;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+
+    main {
+        padding: 5vh 10px;
+    }
+
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+        /* Show 2 columns on smaller screens */
+    }
+}
+
+/* For screens between 768px and 1200px (e.g., tablets) */
+@media (min-width: 768px) and (max-width: 1200px) {
+    header h1 {
+        font-size: 20px;
+    }
+
+    header p {
+        font-size: 16px;
+    }
+}
+
+/* For screens larger than 1200px (e.g., desktops) */
+@media (min-width: 1200px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    header p {
+        font-size: 18px;
+    }
+}

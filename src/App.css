@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -32,13 +33,22 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    height: 76vh;
+    padding: 5vh 20px
 }
+
+/* .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+} */
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
+    /* Show 5 columns on larger screens */
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -96,4 +106,58 @@ footer a {
 
 .github-logo:hover {
     transform: scale(2) rotate(360deg);
+}
+
+/* Responsive Styles */
+
+/* Adjust header font size for smaller screens */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 20px;
+        /* This is changed from 24px */
+    }
+}
+
+/* Adjust header padding for smaller screens */
+@media screen and (max-width: 576px) {
+    header {
+        padding: 0 10px;
+        /* This is changed from 0 20px */
+    }
+}
+
+/* Adjust card size for smaller screens */
+@media screen and (max-width: 768px) {
+    .card {
+        padding: 8px;
+        /* This is changed from 12px */
+    }
+}
+
+/* Adjust card container for smaller screens */
+@media screen and (max-width: 992px) {
+    .card-container {
+        grid-template-columns: repeat(3, 1fr);
+        /* This is changed from 5 columns */
+        gap: 10px;
+        /* Reduce the gap between cards for smaller screens */
+        padding: 0 10px;
+        /* Adjust the container padding for smaller screens */
+    }
+}
+
+/* Adjust main padding for smaller screens */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 3vh 10px;
+        /* This is changed from 5vh 20px */
+    }
+}
+
+/* Adjust card font size for smaller screens */
+@media screen and (max-width: 576px) {
+    .card h2 {
+        font-size: 18px;
+        /* This is changed from 20px */
+    }
 }
