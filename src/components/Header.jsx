@@ -1,4 +1,3 @@
-// Header.jsx
 import React, { useState, useEffect } from "react";
 
 const Header = ({ score }) => {
