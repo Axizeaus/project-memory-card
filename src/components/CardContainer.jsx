@@ -20,8 +20,7 @@ const CardContainer = ({ setScore }) => {
 
   useEffect(() => {
     setData((prevData) => shuffleArray([...prevData]));
-  }, [clickedCards]); // Use an empty dependency array to trigger the effect only once when the component mounts
-
+  }, [clickedCards]);
   const handleCardClick = (id) => {
     if (clickedCards.includes(id)) {
       console.log("You lose");
@@ -50,7 +49,6 @@ const CardContainer = ({ setScore }) => {
             title={card.title}
             imageUrl={card.imageUrl}
             description={card.description}
-            isClicked={card.isClicked}
             handleClick={() => handleCardClick(card.id)}
           />
         ))}
